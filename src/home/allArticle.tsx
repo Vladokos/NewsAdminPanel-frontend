@@ -13,9 +13,9 @@ export default class AllArticle extends React.Component<Props, State> {
   state: State = {
     articles: [],
   };
-
+  //add env to address request 
   componentDidMount() {
-    axios.get("/article/").then((response) => {
+    axios.get(process.env.SERVER_URL + "/article/").then((response) => {
       if (response.statusText === "OK") {
         const document: Array<Articles> = response.data;
         
