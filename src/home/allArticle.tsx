@@ -40,7 +40,7 @@ export default class AllArticle extends React.Component<Props, State> {
               <Link to={"/article/" + article.id} key={article.id + "link"}>
                 <div key={article.id + " fragment"}>
                   <picture>
-                    <img key={article.id + "img"} src={article.image} alt="" />
+                    <img key={article.id + "img"} src={process.env.REACT_APP_SERVER_URL + article.image} alt="" />
                   </picture>
                   <br />
                   <br />
