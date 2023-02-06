@@ -13,18 +13,19 @@ export default class AllArticle extends React.Component<Props, State> {
   state: State = {
     articles: [],
   };
-  //add env to address request 
+  //add env to address request
   componentDidMount() {
-    axios.get(process.env.REACT_APP_SERVER_URL + "/article/").then((response) => {
-      if (response.status === 200) {
-        const document: Array<Articles> = response.data;
-        
-        this.setState((state) => ({
-          articles: document,
-        }));
-       
-      }
-    });
+    axios
+      .get(process.env.REACT_APP_SERVER_URL + "/article/")
+      .then((response) => {
+        if (response.status === 200) {
+          const document: Array<Articles> = response.data;
+
+          this.setState((state) => ({
+            articles: document,
+          }));
+        }
+      });
   }
 
   render(): React.ReactNode {
@@ -36,11 +37,16 @@ export default class AllArticle extends React.Component<Props, State> {
 
           <div className="articles_roster">
             {this.state.articles.map((article) => (
-           
               <Link to={"/article/" + article.id} key={article.id + "link"}>
                 <div key={article.id + " fragment"}>
                   <picture>
-                    <img key={article.id + "img"} src={process.env.REACT_APP_SERVER_URL + article.image} alt="" />
+                    <img
+                      key={article.id + "img"}
+                      src={
+                        process.env.REACT_APP_SERVER_URL + "/" + article.image
+                      }
+                      alt=""
+                    />
                   </picture>
                   <br />
                   <br />
