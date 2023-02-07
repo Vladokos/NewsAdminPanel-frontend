@@ -166,7 +166,7 @@ export default class CreateArticle extends React.Component<Props, State> {
     if (this.state.id === null || this.state.id === 0) {
       const options: AxiosRequestConfig = {
         method: "POST",
-        url: "/article",
+        url: process.env.REACT_APP_SERVER_URL +"/article",
         data: {
           category: this.state.categories,
           titles: this.state.title,
@@ -188,7 +188,7 @@ export default class CreateArticle extends React.Component<Props, State> {
     } else {
       const options: AxiosRequestConfig = {
         method: "PUT",
-        url: "/article",
+        url: process.env.REACT_APP_SERVER_URL +"/article",
         data: {
           id: this.state.id,
           titles: this.state.title,
@@ -226,7 +226,7 @@ export default class CreateArticle extends React.Component<Props, State> {
 
     axios({
       method: "PUT",
-      url: "/image",
+      url: process.env.REACT_APP_SERVER_URL +"/image",
       headers: { headers: { "Content-Type": "multipart/form-data" } },
       data: data,
     }).then((response) => {
@@ -242,7 +242,7 @@ export default class CreateArticle extends React.Component<Props, State> {
   getArticle(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const id = (e.target as HTMLButtonElement).value;
 
-    axios.get(`/article/${id}`).then((response) => {
+    axios.get(process.env.REACT_APP_SERVER_URL +`/article/${id}`).then((response) => {
       if (response.statusText === "OK") {
         const document: Array<Articles> = response.data;
         
@@ -260,7 +260,7 @@ export default class CreateArticle extends React.Component<Props, State> {
   }
 
   getArticles() {
-    axios.get("/article/").then((response) => {
+    axios.get(process.env.REACT_APP_SERVER_URL +"/article/").then((response) => {
       if (response.statusText === "OK") {
         const document: Array<Articles> = response.data;
         this.setState((state) => ({
@@ -277,7 +277,7 @@ export default class CreateArticle extends React.Component<Props, State> {
 
       const options: AxiosRequestConfig = {
         method: "DELETE",
-        url: "/article/" + id,
+        url: process.env.REACT_APP_SERVER_URL +"/article/" + id,
         data: {
           image: image,
         },
@@ -424,7 +424,7 @@ export default class CreateArticle extends React.Component<Props, State> {
             {this.state.articles.map((article) => (
               <React.Fragment key={article.id + " fragment"}>
                 <li key={article.id} className="articles">
-                  <img src={"../" + article.image} alt="" />
+                  <img src={process.env.REACT_APP_SERVER_URL +"../" + article.image} alt="" />
                   <br />
                   {article.category}
                   <br />
