@@ -24,8 +24,8 @@ export default class Article extends React.Component<Props, State> {
     });
 
     if (this.state.articleId.trim().length > 0) {
-      axios.get(`/article/${this.state.articleId}`).then((response) => {
-        if (response.statusText === "OK") {
+      axios.get(process.env.REACT_APP_SERVER_URL +`/article/${this.state.articleId}`).then((response) => {
+        if (response.status === 200) {
           const document: Array<ArticleInterface> = response.data;
 
           this.setState((state) => ({
