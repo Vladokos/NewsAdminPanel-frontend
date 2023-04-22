@@ -27,13 +27,14 @@ export default class Article extends React.Component<Props, State> {
     if (this.state.articleId.trim().length > 0) {
       const options: AxiosRequestConfig = {
         method: "POST",
-        url: `/article/${this.state.articleId}` ,
+        url: process.env.REACT_APP_SERVER_URL +`/article/${this.state.articleId}` ,
       };
       console.log(options)
       axios.request(options).then((response) => {
+
         if (response.status === 200) {
           const document: Array<ArticleInterface> = response.data;
-          console.log(response.data);
+
           this.setState((state) => ({
             articleData: document,
           }));
