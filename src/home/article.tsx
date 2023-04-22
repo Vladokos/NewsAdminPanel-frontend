@@ -33,7 +33,7 @@ export default class Article extends React.Component<Props, State> {
       axios.request(options).then((response) => {
         if (response.status === 200) {
           const document: Array<ArticleInterface> = response.data;
-
+          console.log(response.data);
           this.setState((state) => ({
             articleData: document,
           }));
